@@ -3,8 +3,8 @@ const path = require("path")
 const fs = require("fs")
 const simpleGit = require('simple-git');
 
-if(!process.env.repoPath || !process.env.remoteUrlWithToken){
-	console.log("[-]repoPath and remoteUrlWithToken is needed!")
+if(!process.env.localrepoPath || !process.env.remoteUrlWithToken){
+	console.log("[-]localrepoPath and remoteUrlWithToken is needed!")
 	process.exit()
 }
 const remoteUrlWithToken = process.env.remoteUrlWithToken;
