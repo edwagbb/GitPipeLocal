@@ -12,7 +12,7 @@ const remote = process.env.remoteOrigin || 'origin';
 const branch = process.env.remoteBranch || 'main';
 const repoPath = path.resolve( process.env.localrepoPath); 
 //{ config: ['http.proxy=someproxy'] }
-
+const Interval = parseInt(process.env.Interval) || 3000
 if((!fs.existsSync(repoPath))) 	fs.mkdirSync(repoPath);
 const git = simpleGit(repoPath);
 (async ()=>{
@@ -66,7 +66,7 @@ git.addConfig('user.email', 'some@one.com')
     } catch (error) {
         console.error('[-]Error during sync check:', error);
     }
-	await new Promise(r=>{setTimeout(r,3000)})
+	await new Promise(r=>{setTimeout(r,Interval)})
 	}while(true);
 })()
 
