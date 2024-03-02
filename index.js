@@ -23,8 +23,8 @@ try{
 console.log("[+]Cloning!")
 	await git.clone(remoteUrlWithToken,repoPath)
 }
-git.addConfig('user.email', 'some@one.com')
-
+await git.addConfig('user.email', 'some@one.com')
+await git.addConfig('user.name','someone')
 	do{
 		
     try {
