@@ -1,4 +1,22 @@
 require('dotenv').config();
+const { spawn } = require('child_process');
+
+if (process.argv[2] !== "Main") {
+	var restartTimes = 0;
+	function startMainProcess() {
+		console.log(`[+]GITpipeLOCAL => Start ${++restartTimes} times.`)
+		const main = spawn(process.argv[0], [process.argv[1], 'Main'], { stdio: 'inherit' });
+		main.on('exit', async function (code) {
+			if (code !== 0) {
+				console.log('[-]GITpipeLOCAL => Error when start!')
+				await new Promise((r) => { setTimeout(r, 3000) })
+				startMainProcess();
+			} else startMainProcess();
+		});
+	}
+
+	startMainProcess();
+} else {
 const path = require("path")
 const fs = require("fs")
 const simpleGit = require('simple-git');
@@ -69,4 +87,4 @@ await git.addConfig('user.name','someone')
 	await new Promise(r=>{setTimeout(r,Interval)})
 	}while(true);
 })()
-
+}
